@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from openai import AzureOpenAI
 from dotenv import load_dotenv
+
 app = Flask(__name__)
 
 # Read configuration from environment variables
@@ -17,28 +18,54 @@ client = AzureOpenAI(
     api_key=AZURE_OPENAI_API_KEY,
 )
 
+
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
     user_message = data.get("message", "")
 
-    response = client.chat.completions.create(
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": user_message},
-        ],
-        temperature=0.7,
+    # response = client.chat.completions.create(
+    #     messages=[
+    #         {"role": "system", "content": "You are a helpful assistant."},
+    #         {"role": "user", "content": user_message},
+    #     ],
+    #     temperature=0.7,
+    #     model=AZURE_OPENAI_MODEL_NAME,
+    # )
+
+    response = ChatCompletion(
+        id="chatcmpl-static-0001",
+        object="chat.completion",
+        created=int(time.time()),
         model=AZURE_OPENAI_MODEL_NAME,
+        choices=[
+            Choice(
+                index=0,
+                finish_reason="stop",
+                logprobs=None,
+                message=ChatCompletionMessage(
+                    role="assistant",
+                    content="This is a static response replacing the live Azure OpenAI call.",
+                ),
+            )
+        ],
+        usage=CompletionUsage(
+            prompt_tokens=20,
+            completion_tokens=12,
+            total_tokens=32,
+        ),
+        system_fingerprint="fp_static",
     )
 
-    return jsonify({
-        "model": response.model,
-        "reply": response.choices[0].message.content
-    })
+    return jsonify(
+        {"model": response.model, "reply": response.choices[0].message.content}
+    )
+
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    return {'status': 'healthy'}, 200
+    return {"status": "healthy"}, 200
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

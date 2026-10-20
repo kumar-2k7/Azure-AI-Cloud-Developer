@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Azure AI Cloud Developer | .NET 10 Cloud App</title>
+  <meta name="description"
+    content="Production-ready Azure AI Cloud Developer application built with ASP.NET Core (.NET 10) featuring cloud-native microservices, interactive AI playground, and real-time telemetry." />
+  <meta name="keywords"
+    content="Azure, AI, Cloud Developer, .NET 10, ASP.NET Core, Containers, Microservices, OpenAI" />
+  <meta name="author" content="Azure AI Cloud Developer" />
+  <meta name="theme-color" content="#080b11" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Ambient Background Mesh Glow -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <div class="app-wrapper">
+    <!-- Main Header & Navigation -->
+    <header class="site-header" id="site-header">
+      <div class="header-container">
+        <a href="/" class="brand-wrapper" id="brand-home-link" aria-label="Home">
+          <div class="brand-icon-box" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">
+              Azure AI <span class="text-gradient">.NET</span>
+              <span class="brand-tag">v10.0</span>
+            </div>
+          </div>
+        </a>
+
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#hero-section" id="nav-overview">Overview</a></li>
+            <li><a href="#playground-section" id="nav-playground">AI Studio</a></li>
+            <li><a href="#api-section" id="nav-api">Live API</a></li>
+            <li><a href="#features-section" id="nav-features">Architecture</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle visual theme">
+            <span id="theme-toggle-icon" aria-hidden="true">☀️</span>
+          </button>
+          <a href="#playground-section" class="btn btn-primary" id="header-launch-btn">
+            <span>⚡ Launch Studio</span>
+          </a>
+          <a href="india_tax_optimizer.html" class="btn btn-primary" id="header-tax-optimizer-btn">
+            <span>
+              ⚡ Launch
+              New Tax Regime Optimizer
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content-region">
+      <!-- Hero Section -->
+      <section class="hero-section" id="hero-section">
+        <div class="status-badge" id="system-status-badge">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>ASP.NET Core • .NET 10.0 Runtime • Online</span>
+        </div>
+
+        <h1 class="hero-title">
+          Next-Generation <br />
+          <span class="text-gradient">Azure AI Cloud Microservice</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          High-performance containerized .NET cloud-native application featuring instant static web hosting,
+          zero-allocation minimal APIs, and turnkey integration for Azure OpenAI and intelligent agent services.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#playground-section" class="btn btn-primary" id="hero-cta-playground">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Interactive AI Studio</span>
+          </a>
+          <a href="#api-section" class="btn btn-secondary" id="hero-cta-api">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+            <span>Inspect Health APIs</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Live Telemetry Stats Bar -->
+      <section class="telemetry-section" aria-label="System Metrics">
+        <div class="telemetry-grid">
+          <div class="stat-card" id="card-uptime">
+            <div class="stat-icon cyan" aria-hidden="true">⏱️</div>
+            <div class="stat-info">
+              <span class="stat-label">System Uptime</span>
+              <span class="stat-value" id="metric-uptime">0h 23m 40s</span>
+            </div>
+          </div>
+
+          <div class="stat-card" id="card-requests">
+            <div class="stat-icon purple" aria-hidden="true">🚀</div>
+            <div class="stat-info">
+              <span class="stat-label">Total Requests</span>
+              <span class="stat-value" id="metric-requests">2,841</span>
+            </div>
+          </div>
+
+          <div class="stat-card" id="card-memory">
+            <div class="stat-icon emerald" aria-hidden="true">📊</div>
+            <div class="stat-info">
+              <span class="stat-label">Memory Footprint</span>
+              <span class="stat-value" id="metric-memory">48.2 MB</span>
+            </div>
+          </div>
+
+          <div class="stat-card" id="card-runtime">
+            <div class="stat-icon amber" aria-hidden="true">⚡</div>
+            <div class="stat-info">
+              <span class="stat-label">Server Engine</span>
+              <span class="stat-value" id="metric-runtime">Kestrel .NET 10</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Body Sections Container -->
+      <div class="main-content">
+        <!-- Interactive AI Studio Section -->
+        <section id="playground-section" aria-labelledby="playground-title">
+          <div class="section-header">
+            <span class="section-eyebrow">Intelligent Assistant</span>
+            <h2 class="section-title" id="playground-title">Interactive AI Prompt Studio</h2>
+            <p class="section-desc">
+              Test semantic queries, explore cloud architectures, and simulate live token streaming directly in your
+              browser.
+            </p>
+          </div>
+
+          <div class="studio-grid">
+            <!-- Left: Prompt Configuration -->
+            <div class="glass-panel" id="prompt-config-panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <span aria-hidden="true">💬</span> Prompt Dispatcher
+                </div>
+                <div class="badge-tag">Azure OpenAI Model</div>
+              </div>
+
+              <!-- Quick Prompt Presets -->
+              <div class="prompt-chips-container">
+                <div class="prompt-chips-label">Quick Scenarios:</div>
+                <div class="chips-wrapper">
+                  <button type="button" class="prompt-chip" data-type="vector" id="chip-vector">🔍 Vector
+                    Search</button>
+                  <button type="button" class="prompt-chip" data-type="container" id="chip-container">🐳 Azure
+                    Containers</button>
+                  <button type="button" class="prompt-chip" data-type="perf" id="chip-perf">⚡ .NET 10 Perf</button>
+                  <button type="button" class="prompt-chip" data-type="rag" id="chip-rag">📚 RAG Pipeline</button>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="playground-model-select" class="input-label">Select AI Model</label>
+                <select id="playground-model-select" class="select-control">
+                  <option value="gpt-4o">Azure OpenAI GPT-4o (Omni Engine)</option>
+                  <option value="phi-4">Microsoft Phi-4 (Lightweight Reasoning)</option>
+                  <option value="text-embedding-3">Azure Ada / Embedding 3 Small</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="playground-prompt" class="input-label">Prompt Input</label>
+                <textarea id="playground-prompt" class="textarea-control" rows="4"
+                  placeholder="Type a cloud architecture or AI question, or choose a quick scenario above...">How does .NET 10 enhance throughput and memory efficiency for cloud-native microservices?</textarea>
+              </div>
+
+              <div class="action-bar">
+                <span class="char-counter" id="prompt-char-count">88 / 500</span>
+                <button type="button" class="btn btn-primary" id="playground-submit-btn">
+                  <span>✨</span> Run Prompt
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Live Output Stream Window -->
+            <div class="glass-panel" id="prompt-response-panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <span aria-hidden="true">🖥️</span> Model Stream Output
+                </div>
+                <div class="output-meta">
+                  <button type="button" class="copy-btn" id="copy-response-btn" aria-label="Copy response text">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="response-window" id="playground-response" tabindex="0" role="region"
+                aria-label="Generated AI Response">
+                <div class="placeholder-text">
+                  <span class="placeholder-icon" aria-hidden="true">🤖</span>
+                  <span>Click "Run Prompt" or choose a scenario on the left to see the AI response stream in
+                    real-time.</span>
+                </div>
+              </div>
+
+              <div class="output-metrics-row">
+                <span>Tokens: <strong id="stat-tokens-count">0 tokens</strong></span>
+                <span>Latency: <strong id="stat-latency-val">0.00s</strong></span>
+                <span>Status: <strong style="color: var(--accent-emerald);">Ready</strong></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live Backend API Inspector Section -->
+        <section id="api-section" aria-labelledby="api-inspector-title">
+          <div class="section-header">
+            <span class="section-eyebrow">Full-Stack Connectivity</span>
+            <h2 class="section-title" id="api-inspector-title">Live ASP.NET Core API Inspector</h2>
+            <p class="section-desc">
+              Execute live HTTP requests against the active .NET Kestrel server to verify endpoints and diagnostics.
+            </p>
+          </div>
+
+          <div class="api-inspector-container">
+            <div class="api-tabs-bar">
+              <div class="api-buttons-group">
+                <button type="button" class="api-endpoint-btn active" id="btn-api-health">
+                  <span class="http-method">GET</span> /api/health
+                </button>
+                <button type="button" class="api-endpoint-btn" id="btn-api-info">
+                  <span class="http-method">GET</span> /api/info
+                </button>
+              </div>
+
+              <div class="api-status-tag">
+                <span id="api-status-display"><span style="color: var(--accent-emerald);">●</span> HTTP 200 OK</span>
+                <span style="color: var(--text-muted); margin: 0 0.5rem;">|</span>
+                <span>Latency: <strong id="api-latency-display">4 ms</strong></span>
+              </div>
+            </div>
+
+            <pre class="api-code-viewer" id="api-code-viewer" tabindex="0"
+              aria-label="JSON response viewer">// Executing backend query...</pre>
+          </div>
+        </section>
+
+        <!-- Architectural Capabilities Showcase -->
+        <section id="features-section" aria-labelledby="features-title">
+          <div class="section-header">
+            <span class="section-eyebrow">Cloud Architecture</span>
+            <h2 class="section-title" id="features-title">Enterprise Cloud Foundations</h2>
+            <p class="section-desc">
+              Architected for Azure Container Apps, AKS, and intelligent AI orchestration with zero technical debt.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card" id="feature-containers">
+              <div class="feature-icon-wrapper" style="background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan);"
+                aria-hidden="true">
+                📦
+              </div>
+              <h3 class="feature-title">Container Native</h3>
+              <p class="feature-desc">
+                Pre-configured for Docker, Azure Container Registry, and Azure Container Apps with lightweight chiseled
+                Linux base images.
+              </p>
+            </article>
+
+            <article class="feature-card" id="feature-minimal-apis">
+              <div class="feature-icon-wrapper"
+                style="background: rgba(168, 85, 247, 0.12); color: var(--accent-purple);" aria-hidden="true">
+                ⚡
+              </div>
+              <h3 class="feature-title">High-Throughput APIs</h3>
+              <p class="feature-desc">
+                Minimal APIs running on ASP.NET Core with dynamic PGO and minimal memory footprint delivering thousands
+                of RPS.
+              </p>
+            </article>
+
+            <article class="feature-card" id="feature-ai-integration">
+              <div class="feature-icon-wrapper"
+                style="background: rgba(52, 211, 153, 0.12); color: var(--accent-emerald);" aria-hidden="true">
+                🧠
+              </div>
+              <h3 class="feature-title">Semantic Kernel Ready</h3>
+              <p class="feature-desc">
+                Seamless plugin architecture connecting Azure OpenAI, function calling, vector embeddings, and agentic
+                memory stores.
+              </p>
+            </article>
+
+            <article class="feature-card" id="feature-observability">
+              <div class="feature-icon-wrapper"
+                style="background: rgba(251, 191, 36, 0.12); color: var(--accent-amber);" aria-hidden="true">
+                🛡️
+              </div>
+              <h3 class="feature-title">Observability & Health</h3>
+              <p class="feature-desc">
+                Built-in health probes (`/api/health`), structured JSON logging, and OpenTelemetry instrumentation ready
+                for Azure Monitor.
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer" id="site-footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <div class="footer-brand">Azure AI Cloud Developer</div>
+          <div class="footer-copy">© 2026 Azure-AI-Cloud-Developer • Powered by ASP.NET Core .NET 10</div>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="/api/health" target="_blank" rel="noopener">/api/health</a></li>
+          <li><a href="/api/info" target="_blank" rel="noopener">/api/info</a></li>
+          <li><a href="#hero-section">Back to Top ↑</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JavaScript Controller -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

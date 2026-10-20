@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>India New Tax Regime Optimizer | Azure AI Cloud Developer</title>
+    <meta name="description"
+          content="India New Tax Regime Optimizer under Section 115BAC. Calculate slab rates, compare tax liability, and maximize tax savings." />
+    <meta name="keywords" content="India Tax Optimizer, New Tax Regime, Section 115BAC, Income Tax India, Tax Calculator" />
+    <meta name="author" content="Azure AI Cloud Developer" />
+    <meta name="theme-color" content="#080b11">
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+
+    <!-- External & Application Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tax_optimizer.css">
+
+    <!-- Chart.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Ambient Background Mesh Glow -->
+    <div class="ambient-glow" aria-hidden="true"></div>
+
+    <div class="app-wrapper">
+        <!-- Main Header & Navigation (from index.html) -->
+        <header class="site-header" id="site-header">
+            <div class="header-container">
+                <a href="index.html" class="brand-wrapper" id="brand-home-link" aria-label="Home">
+                    <div class="brand-icon-box" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="brand-title">
+                            Azure AI <span class="text-gradient">.NET</span>
+                            <span class="brand-tag">v10.0</span>
+                        </div>
+                    </div>
+                </a>
+
+                <nav aria-label="Main Navigation">
+                    <ul class="nav-links">
+                        <li><a href="index.html#hero-section" id="nav-overview">Overview</a></li>
+                        <li><a href="index.html#playground-section" id="nav-playground">AI Studio</a></li>
+                        <li><a href="index.html#api-section" id="nav-api">Live API</a></li>
+                        <li><a href="index.html#features-section" id="nav-features">Architecture</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle visual theme">
+                        <span id="theme-toggle-icon" aria-hidden="true">☀️</span>
+                    </button>
+                    <a href="index.html" class="btn btn-secondary" id="header-back-home-btn">
+                        <span>← Back to Portal</span>
+                    </a>
+                    <a href="index.html#playground-section" class="btn btn-primary" id="header-launch-btn">
+                        <span>⚡ Launch Studio</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="main-content-region">
+            <div class="tax-container">
+
+                <!-- INTERNAL TAX HEADER BLOCK -->
+                <div class="tax-header-block">
+                    <div class="header-title">
+                        <span class="flag">🇮🇳</span>
+                        <div>
+                            <h1>New Tax Regime Optimizer</h1>
+                            <p style="font-size:0.82rem;color:var(--text3);margin-top:2px">FY 2025-26 (AY 2026-27) · Salaried Employees & Professionals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SALARY INPUT CARD -->
+                <div class="card fade-in" style="margin-bottom:20px">
+                    <div class="card-title"><span class="icon">💼</span> Salary Information</div>
+                    <div class="grid2">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Annual Gross Salary (CTC)
+                                <span class="tooltip-wrap"><span class="tooltip-icon">?</span><span class="tooltip-box">Your total Cost to Company including all components before any deductions.</span></span>
+                            </label>
+                            <div class="input-wrap">
+                                <span class="input-prefix">₹</span>
+                                <input type="number" class="form-input" id="grossSalary" placeholder="e.g. 1200000" min="0" oninput="onInputChange()">
+                            </div>
+                            <div class="err-msg hidden" id="grossErr"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Annual Net In-Hand Salary
+                                <span class="tooltip-wrap"><span class="tooltip-icon">?</span><span class="tooltip-box">Total amount credited to your bank account in a full year.</span></span>
+                            </label>
+                            <div class="input-wrap">
+                                <span class="input-prefix">₹</span>
+                                <input type="number" class="form-input" id="netSalary" placeholder="e.g. 900000" min="0" oninput="onInputChange()">
+                            </div>
+                            <div class="err-msg hidden" id="netErr"></div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:10px;flex-wrap:wrap">
+                        <button type="button" class="btn btn-primary" onclick="analyze()">⚡ Analyze & Optimize</button>
+                        <button type="button" class="btn btn-outline" onclick="loadDemo()">📊 Load Demo Data</button>
+                    </div>
+                </div>
+
+                <!-- RESULTS (hidden until analyzed) -->
+                <div id="results" class="hidden fade-in">
+
+                    <!-- TAX ANALYSIS CARDS -->
+                    <div class="section-title">📊 Tax Analysis</div>
+                    <div class="grid4" id="statCards"></div>
+
+                    <!-- TABS -->
+                    <div style="margin-top:24px">
+                        <div class="tabs">
+                            <div class="tab active" onclick="switchTab('overview')">Overview</div>
+                            <div class="tab" onclick="switchTab('optimizer')">Optimizer</div>
+                            <div class="tab" onclick="switchTab('scenarios')">Scenarios</div>
+                            <div class="tab" onclick="switchTab('simulator')">Simulator</div>
+                            <div class="tab" onclick="switchTab('learn')">Learn</div>
+                        </div>
+
+                        <!-- OVERVIEW TAB -->
+                        <div class="tab-panel active" id="tab-overview">
+                            <div class="grid2">
+                                <div class="card">
+                                    <div class="card-title"><span class="icon">🎯</span> Tax Saving Score</div>
+                                    <div class="gauge-wrap">
+                                        <svg class="gauge-svg" width="220" height="130" viewBox="0 0 220 130" id="gaugeSvg"></svg>
+                                        <div class="gauge-info" id="gaugeInfo"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-title"><span class="icon">🍩</span> Tax Breakdown</div>
+                                    <div class="chart-container"><canvas id="pieChart"></canvas></div>
+                                </div>
+                            </div>
+
+                            <div class="card" style="margin-top:20px">
+                                <div class="card-title"><span class="icon">📈</span> Income vs Tax (Slabs)</div>
+                                <div class="chart-container" style="height:240px"><canvas id="barChart"></canvas></div>
+                            </div>
+
+                            <div class="card" style="margin-top:20px">
+                                <div class="card-title"><span class="icon">🏛️</span> New Tax Regime Slabs Applied</div>
+                                <div id="slabBreakdown"></div>
+                            </div>
+                        </div>
+
+                        <!-- OPTIMIZER TAB -->
+                        <div class="tab-panel" id="tab-optimizer">
+                            <div class="card" style="margin-bottom:16px">
+                                <div class="card-title"><span class="icon">💡</span> Tax Saving Opportunities</div>
+                                <p style="font-size:0.83rem;color:var(--text3);margin-bottom:16px">Personalized recommendations based on your salary. Sorted by potential savings.</p>
+                                <div id="recommendations"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-title"><span class="icon">💰</span> Tax Savings by Category</div>
+                                <div class="chart-container"><canvas id="savingsChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <!-- SCENARIOS TAB -->
+                        <div class="tab-panel" id="tab-scenarios">
+                            <div class="card" style="margin-bottom:20px">
+                                <div class="card-title"><span class="icon">⚖️</span> Scenario Comparison</div>
+                                <div class="table-wrap" id="scenarioTable"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-title"><span class="icon">📊</span> Scenario Comparison Chart</div>
+                                <div class="chart-container" style="height:260px"><canvas id="scenarioChart"></canvas></div>
+                            </div>
+
+                            <div class="card" style="margin-top:20px">
+                                <div class="card-title"><span class="icon">💳</span> Recommended Salary Structure</div>
+                                <div id="salaryStructure"></div>
+                            </div>
+                        </div>
+
+                        <!-- SIMULATOR TAB -->
+                        <div class="tab-panel" id="tab-simulator">
+                            <div class="grid2">
+                                <div class="card">
+                                    <div class="card-title"><span class="icon">🎛️</span> Restructuring Simulator</div>
+                                    <p style="font-size:0.82rem;color:var(--text3);margin-bottom:16px">Adjust sliders to see live tax impact</p>
+                                    <div id="simControls"></div>
+                                    <button type="button" class="btn btn-primary" style="width:100%;margin-top:12px;justify-content:center" onclick="resetSim()">↺ Reset</button>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-title"><span class="icon">📉</span> Live Impact</div>
+                                    <div id="simResults"></div>
+                                    <div class="chart-container" style="margin-top:16px"><canvas id="cashFlowChart"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LEARN TAB -->
+                        <div class="tab-panel" id="tab-learn">
+                            <div class="card">
+                                <div class="card-title"><span class="icon">📚</span> Tax Concepts Explained</div>
+                                <div id="accordions"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DISCLAIMER -->
+                    <div class="disclaimer">⚠️ <strong>Disclaimer:</strong> This tool provides estimates for educational purposes only and should not be considered professional tax advice. Consult a Chartered Accountant or tax professional before making financial decisions.</div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Site Footer (from index.html) -->
+        <footer class="site-footer" id="site-footer">
+            <div class="footer-container">
+                <div class="footer-left">
+                    <div class="footer-brand">Azure AI Cloud Developer</div>
+                    <div class="footer-copy">© 2026 Azure-AI-Cloud-Developer • Powered by ASP.NET Core .NET 10</div>
+                </div>
+
+                <ul class="footer-links">
+                    <li><a href="/api/health" target="_blank" rel="noopener">/api/health</a></li>
+                    <li><a href="/api/info" target="_blank" rel="noopener">/api/info</a></li>
+                    <li><a href="index.html#hero-section">Back to Top ↑</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-Side Controllers -->
+    <script src="js/app.js"></script>
+    <script src="js/tax_optimizer.js"></script>
+</body>
+
+</html>
