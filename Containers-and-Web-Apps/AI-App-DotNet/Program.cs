@@ -30,4 +30,14 @@ app.MapGet("/api/info", () => Results.Ok(new
     }
 }));
 
+app.MapGet("/api/appsettings", () => Results.Ok(new
+{
+    Azure_Api_Url = app.Configuration["Azure:AZURE_API_URL"] ?? app.Configuration["AZURE_API_URL"],
+    Azure_Api_Key = app.Configuration["Azure:AZURE_API_KEY"] ?? app.Configuration["AZURE_API_KEY"],
+    AZURE_Model_Name = app.Configuration["Azure:AZURE_MODEL_NAME"] ?? app.Configuration["AZURE_MODEL_NAME"],
+    TimeStamp = DateTime.UtcNow,
+    RunTime = ".NET 10.0",
+    Environment = app.Environment.EnvironmentName
+}));
+
 app.Run();
